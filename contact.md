@@ -9,7 +9,7 @@ Ready to transform your infrastructure? Let's discuss how Cirrostratus can help 
 
 ## Contact Form
 
-<form id="contact-form" action="#" method="POST">
+<form id="contact-form">
   <div class="form-group">
     <label for="name">Name *</label>
     <input type="text" id="name" name="name" required>
@@ -66,8 +66,9 @@ Ready to transform your infrastructure? Let's discuss how Cirrostratus can help 
 4. **Delivery** - Regular updates and milestone reviews
 
 <script>
-document.getElementById('contact-form').addEventListener('submit', async function(e) {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
     
     const formData = new FormData(this);
     const data = Object.fromEntries(formData);
@@ -104,6 +105,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         statusDiv.innerHTML = 'Sorry, there was an error sending your message. Please try emailing me directly.';
         statusDiv.className = 'status-error';
     }
+    });
 });
 </script>
 

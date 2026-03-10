@@ -5,6 +5,8 @@ title: About
 
 # About Me
 
+![Yannick Van Rooyen]({{ '/assets/img/yannick_small.jpeg' | relative_url }})
+
 I'm a Senior DevOps Engineer and AWS Specialist with deep expertise in cloud infrastructure, infrastructure as code, and technical leadership. I help organizations build scalable, secure, and cost-effective AWS environments.
 
 ## Background

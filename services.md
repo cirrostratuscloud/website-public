@@ -15,8 +15,8 @@ title: Services
 ## DevOps & Automation
 
 - **CI/CD Pipelines**: Automated deployment workflows with GitHub Actions, Jenkins, or AWS CodePipeline
-- **Infrastructure as Code**: Terraform and CloudFormation for reproducible infrastructure
-- **Monitoring & Observability**: CloudWatch, Prometheus, Grafana implementation
+- **Infrastructure as Code**: Terraform, OpenTofu, Terragrunt, CloudFormation, and AWS CDK for reproducible infrastructure
+- **Monitoring & Observability**: CloudWatch, Application Signals, and X-Ray for comprehensive observability
 - **Security Automation**: Automated compliance and security scanning
 
 ## Technical Leadership
@@ -26,12 +26,22 @@ title: Services
 - **Process Optimization**: Streamline development and deployment workflows
 - **Architecture Decisions**: Guidance on technology choices and system design
 
-## Terraform Expertise
+## Infrastructure as Code Expertise
 
-- **Module Development**: Reusable, tested Terraform modules
-- **State Management**: Secure, collaborative Terraform workflows
-- **Migration**: Convert existing infrastructure to Terraform
-- **Best Practices**: Code organization, testing, and documentation
+- **Terraform & OpenTofu**: Module development, state management, and best practices
+- **Terragrunt**: Multi-environment orchestration and DRY infrastructure patterns
+- **AWS CDK**: Modern infrastructure as code with TypeScript, Python, and other languages
+- **CloudFormation**: Template design and optimization
+- **Org-Formation**: AWS Organization setup and multi-account governance - I can support your organization structure, account management, and policy deployment across your AWS estate
+
+---
+
+## AWS Observability & Monitoring
+
+- **Application Signals**: Monitor application performance and health across your infrastructure
+- **X-Ray**: Distributed tracing for microservices and serverless applications
+- **CloudWatch**: Comprehensive logging, metrics, and dashboards
+- **Custom Metrics**: Application-specific monitoring and alerting
 
 ---
 

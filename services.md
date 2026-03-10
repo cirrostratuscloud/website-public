@@ -32,16 +32,7 @@ title: Services
 - **Terragrunt**: Multi-environment orchestration and DRY infrastructure patterns
 - **AWS CDK**: Modern infrastructure as code with TypeScript, Python, and other languages
 - **CloudFormation**: Template design and optimization
-- **Org-Formation**: AWS Organization setup and multi-account governance - I can support your organization structure, account management, and policy deployment across your AWS estate
-
----
-
-## AWS Observability & Monitoring
-
-- **Application Signals**: Monitor application performance and health across your infrastructure
-- **X-Ray**: Distributed tracing for microservices and serverless applications
-- **CloudWatch**: Comprehensive logging, metrics, and dashboards
-- **Custom Metrics**: Application-specific monitoring and alerting
+- **Org-Formation**: AWS Organization setup and multi-account governance
 
 ---
 

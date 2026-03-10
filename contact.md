@@ -69,42 +69,42 @@ Ready to transform your infrastructure? Let's discuss how Cirrostratus can help 
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('contact-form').addEventListener('submit', async function(e) {
         e.preventDefault();
-    
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
-    
-    const statusDiv = document.getElementById('form-status');
-    statusDiv.style.display = 'block';
-    statusDiv.innerHTML = 'Sending message...';
-    statusDiv.className = 'status-sending';
-    
-    try {
-        const response = await fetch('https://biaieh4ihcn6bl5theqmu4mnuq0ereed.lambda-url.eu-west-1.on.aws', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-API-Key': 'T57rEJGU9jxAc5QOub82mtO2mhzt6TZ2'
-            },
-            body: JSON.stringify({
-                name: data.name,
-                email: data.email,
-                message: data.message,
-                company: data.company || '',
-                'project-type': data['project-type'] || ''
-            })
-        });
         
-        if (response.ok) {
-            statusDiv.innerHTML = 'Message sent successfully! I\'ll get back to you soon.';
-            statusDiv.className = 'status-success';
-            this.reset();
-        } else {
-            throw new Error('Failed to send message');
+        const formData = new FormData(this);
+        const data = Object.fromEntries(formData);
+        
+        const statusDiv = document.getElementById('form-status');
+        statusDiv.style.display = 'block';
+        statusDiv.innerHTML = 'Sending message...';
+        statusDiv.className = 'status-sending';
+        
+        try {
+            const response = await fetch('https://biaieh4ihcn6bl5theqmu4mnuq0ereed.lambda-url.eu-west-1.on.aws', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': 'T57rEJGU9jxAc5QOub82mtO2mhzt6TZ2'
+                },
+                body: JSON.stringify({
+                    name: data.name,
+                    email: data.email,
+                    message: data.message,
+                    company: data.company || '',
+                    'project-type': data['project-type'] || ''
+                })
+            });
+            
+            if (response.ok) {
+                statusDiv.innerHTML = 'Message sent successfully! I\'ll get back to you soon.';
+                statusDiv.className = 'status-success';
+                this.reset();
+            } else {
+                throw new Error('Failed to send message');
+            }
+        } catch (error) {
+            statusDiv.innerHTML = 'Sorry, there was an error sending your message. Please try emailing me directly.';
+            statusDiv.className = 'status-error';
         }
-    } catch (error) {
-        statusDiv.innerHTML = 'Sorry, there was an error sending your message. Please try emailing me directly.';
-        statusDiv.className = 'status-error';
-    }
     });
 });
 </script>

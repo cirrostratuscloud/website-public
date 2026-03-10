@@ -17,7 +17,7 @@
                 <h2>{{ site.title | default: site.github.repository_name }}</h2>
             </a>
             <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+                <p class="tagline">{{ site.description | default: site.github.project_tagline }}</p>
                 <div class="social-links">
                     <a href="https://linkedin.com/in/yannickvanrooyen" target="_blank" rel="noopener noreferrer"
                         title="LinkedIn" class="social-icon">
@@ -44,6 +44,7 @@
                     item.title }}</a>
                 {% endfor %}
             </nav>
+        </div>
     </header>
 
     <div class="container">

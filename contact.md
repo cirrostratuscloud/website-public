@@ -78,13 +78,19 @@ document.getElementById('contact-form').addEventListener('submit', async functio
     statusDiv.className = 'status-sending';
     
     try {
-        // TODO: Replace with your actual API endpoint
-        const response = await fetch('YOUR_API_ENDPOINT_HERE', {
+        const response = await fetch('https://biaieh4ihcn6bl5theqmu4mnuq0ereed.lambda-url.eu-west-1.on.aws', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                'X-API-Key': 'T57rEJGU9jxAc5QOub82mtO2mhzt6TZ2'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({
+                name: data.name,
+                email: data.email,
+                message: data.message,
+                company: data.company || '',
+                'project-type': data['project-type'] || ''
+            })
         });
         
         if (response.ok) {

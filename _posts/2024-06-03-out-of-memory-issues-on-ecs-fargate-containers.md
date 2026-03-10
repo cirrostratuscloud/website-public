@@ -3,9 +3,7 @@ layout: default
 title: "Out Of Memory issues on ECS Fargate containers"
 date: 2024-06-03
 categories: [aws, docker]
-excerpt: ""OutOfMemoryError: Container killed due to memory usage". This is the reason your tasks are restarting or failing altogether. The metrics published by ECS don't show that much memory usage, so what's going on?
-The issue; hard memory limits
-Many appli..."
+excerpt: "OutOfMemoryError: Container killed due to memory usage". This is the reason your tasks are restarting or failing altogether. The metrics published by ECS don't show that much memory usage, so what's going on?"
 image: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/tjiPN3e45WE/upload/1a900e5dd120947b11f011e2b9c7ea1a.jpeg
 slug: out-of-memory-issues-on-ecs-fargate-containers
 ---

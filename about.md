@@ -26,8 +26,8 @@ Great infrastructure is invisible—it just works. I'm passionate about building
 I'm always interested in discussing AWS, DevOps, and infrastructure challenges. Feel free to reach out:
 
 - **Email**: [contact@cirrostratus.cloud](mailto:contact@cirrostratus.cloud)
-- **LinkedIn**: [Yannick Van Rompuy](https://linkedin.com/in/yannickvr)
-- **GitHub**: [@cirrostratuscloud](https://github.com/cirrostratuscloud)
+- **LinkedIn**: [Yannick Van Rooyen](https://www.linkedin.com/in/yannickvanrooyen/)
+- **GitHub**: [@YannickVR](https://github.com/yannickvr)
 
 ---
 

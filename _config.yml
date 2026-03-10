@@ -1,8 +1,8 @@
 title: Cirrostratus
 description: AWS & DevOps Consulting | Tech Leadership | Infrastructure as Code
 theme: jekyll-theme-hacker
-url: "https://cirrostratus.cloud"
-baseurl: ""
+url: "https://cirrostratuscloud.github.io"
+baseurl: "/website-public"
 
 author:
   name: Cirrostratus

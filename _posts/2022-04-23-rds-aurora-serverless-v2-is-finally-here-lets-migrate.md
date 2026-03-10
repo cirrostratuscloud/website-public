@@ -1,12 +1,15 @@
 ---
 layout: default
-title: "RDS Aurora Serverless v2 is Finally Here - Let's Migrate"
+title: "RDS Aurora Serverless v2 is finally here, let's migrate!"
 date: 2022-04-23
-categories: [aws, rds, aurora, serverless, migration]
-excerpt: "Migration guide and benefits of Aurora Serverless v2."
+categories: [aws, databases, mysql, postgresql, serverless]
+excerpt: "After being in preview for what felt like an eternity, AWS has finally
+released RDS Aurora Serverless v2 on April 21, 2022. 
+RDS Aurora Serverless v2 is available for both Mysql 8 and Postgres 13 and will be a game changer for many organizations that..."
+image: https://cdn.hashnode.com/res/hashnode/image/upload/v1650713587330/3IIxEZ3og.png
 ---
 
-# RDS Aurora Serverless v2 is Finally Here - Let's Migrate
+![RDS Aurora Serverless v2 is finally here, let's migrate!](https://cdn.hashnode.com/res/hashnode/image/upload/v1650713587330/3IIxEZ3og.png)
 
 After being in preview for what felt like an eternity, AWS has finally
 [released RDS Aurora Serverless v2](https://aws.amazon.com/about-aws/whats-new/2022/04/amazon-aurora-serverless-v2/) on April 21, 2022. 

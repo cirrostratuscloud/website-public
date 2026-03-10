@@ -1,12 +1,10 @@
 ---
 layout: default
-title: "Deploying CDK to AWS Using Bitbucket Pipelines and OIDC"
+title: "Deploying (CDK) to AWS using Bitbucket Pipelines and OIDC"
 date: 2022-03-13
-categories: [aws, cdk, bitbucket, cicd, oidc]
-excerpt: "Secure CDK deployments with Bitbucket Pipelines using OIDC authentication."
+categories: [aws-cdk, bitbucket, infrastructure, aws]
+excerpt: "The other day I was browsing Reddit and a user asked for help regarding deploying CDK with Bitbucket Pipelines, using OIDC. I assumed that this was straight forward and helped the user by pointing him to some articles. A few days later, the same use ..."
 ---
-
-# Deploying CDK to AWS Using Bitbucket Pipelines and OIDC
 
 
 ![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1647162199041/AyiwSdj0C.png)

@@ -1,15 +1,14 @@
 ---
 layout: default
-title: "AWS Cost Optimization for Everybody"
-date: 2025-11-20
-categories: [aws, cost-optimization, finops]
-excerpt: "Practical strategies for reducing AWS costs across all service tiers."
-image: /website-public/_posts/_images/aws_cost.png
+title: "AWS Cost Optimization for everybody"
+date: 2024-11-20
+categories: [aws, cost-optimisation, finops]
+excerpt: "Are you bleeding money on your AWS bill? You’re not alone. Between a complex billing system and a sea of options and opinions about cloud infrastructure, no AWS account is 100% optimized and cost effective.
+As with many complex problems, I like to br..."
+image: https://cdn.hashnode.com/res/hashnode/image/upload/v1732106123993/8251eb27-889b-44fe-8fae-328ae09114ee.png
 ---
 
-# AWS Cost Optimization for Everybody
-
-![AWS Cost Optimization]({{ site.baseurl }}/_posts/_images/aws_cost.png)
+![AWS Cost Optimization for everybody](https://cdn.hashnode.com/res/hashnode/image/upload/v1732106123993/8251eb27-889b-44fe-8fae-328ae09114ee.png)
 
 Are you bleeding money on your AWS bill? You’re not alone. Between a complex billing system and a sea of options and opinions about cloud infrastructure, no AWS account is 100% optimized and cost effective.
 

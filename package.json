@@ -1,0 +1,10 @@
+{
+    "name": "cirrostratus-website",
+    "version": "1.0.0",
+    "description": "Cirrostratus company website",
+    "scripts": {
+        "fetch-posts": "node scripts/fetch-hashnode-posts.js"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+}

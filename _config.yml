@@ -1,0 +1,51 @@
+title: Cirrostratus
+description: AWS & DevOps Consulting | Tech Leadership | Infrastructure as Code
+theme: jekyll-theme-hacker
+url: "https://cirrostratus.cloud"
+baseurl: ""
+
+author:
+  name: Cirrostratus
+  email: contact@cirrostratus.cloud
+
+# Navigation
+navigation:
+  - title: Home
+    url: /
+  - title: Services
+    url: /services
+  - title: Blog
+    url: /blog
+  - title: Contact
+    url: /contact
+
+# Blog settings
+permalink: /blog/:year/:month/:day/:title/
+paginate: 5
+paginate_path: "/blog/page:num/"
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-paginate
+
+# SEO
+twitter:
+  username: cirrostratus
+linkedin:
+  username: cirrostratus
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /blog/:year/:month/:day/:title/
+
+# Markdown settings
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

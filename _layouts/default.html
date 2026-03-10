@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
+    {% seo %}
+</head>
+
+<body>
+
+    <header>
+        <div class="container">
+            <a id="a-title" href="{{ '/' | relative_url }}">
+                <h1>{{ site.title | default: site.github.repository_name }}</h1>
+            </a>
+            <h2>{{ site.description | default: site.github.project_tagline }}</h2>
+
+            <nav>
+                {% for item in site.navigation %}
+                <a href="{{ item.url | relative_url }}" {% if page.url==item.url %}class="current" {% endif %}>{{
+                    item.title }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="main_content">
+            {{ content }}
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{ 'now' | date: "%Y" }} Cirrostratus. All rights reserved.</p>
+            <p>AWS & DevOps Consulting | <a href="mailto:contact@cirrostratus.cloud">contact@cirrostratus.cloud</a></p>
+        </div>
+    </footer>
+
+    <style>
+        nav {
+            margin: 1rem 0;
+        }
+
+        nav a {
+            color: #00ff00;
+            text-decoration: none;
+            margin-right: 1rem;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid transparent;
+        }
+
+        nav a:hover,
+        nav a.current {
+            border-color: #00ff00;
+        }
+
+        footer {
+            margin-top: 2rem;
+            padding: 1rem 0;
+            border-top: 1px solid #333;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #00ff00;
+        }
+    </style>
+</body>
+
+</html>

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Home
+title: "AWS & DevOps Consulting | Cloud Infrastructure & Technical Leadership"
 ---
 
-# Cirrostratus
-## AWS & DevOps Consulting
+## Cirrostratus
+### AWS & DevOps Consulting
 
 Welcome to Cirrostratus - your trusted partner for cloud infrastructure, DevOps transformation, and technical leadership.
 

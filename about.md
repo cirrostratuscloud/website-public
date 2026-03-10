@@ -31,4 +31,4 @@ I'm always interested in discussing AWS, DevOps, and infrastructure challenges. 
 
 ---
 
-Ready to work together? [Get in touch](/contact) to discuss your project.
+Ready to work together? [Get in touch]({{ '/contact' | relative_url }}) to discuss your project.

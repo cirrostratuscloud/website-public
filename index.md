@@ -27,6 +27,6 @@ Welcome to Cirrostratus - your trusted partner for cloud infrastructure, DevOps 
 
 ---
 
-Ready to transform your infrastructure? [Get in touch](/contact) to discuss your project.
+Ready to transform your infrastructure? [Get in touch]({{ '/contact' | relative_url }}) to discuss your project.
 
-[View Services](/services) | [Read Blog](/blog)
+[View Services]({{ '/services' | relative_url }}) | [Read Blog]({{ '/blog' | relative_url }})

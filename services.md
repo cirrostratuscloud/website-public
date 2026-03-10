@@ -57,4 +57,4 @@ title: Services
 
 ---
 
-Ready to discuss your project? [Contact me](/contact) for a consultation.
+Ready to discuss your project? [Contact me]({{ '/contact' | relative_url }}) for a consultation.

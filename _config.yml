@@ -1,6 +1,6 @@
 title: Cirrostratus
 description: AWS & DevOps Consulting | Tech Leadership | Infrastructure as Code
-theme: jekyll-theme-hacker
+remote_theme: pages-themes/hacker@v0.2.0
 url: "https://cirrostratuscloud.github.io"
 baseurl: "/website-public"
 
@@ -30,6 +30,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
   - jekyll-paginate
+  - jekyll-remote-theme
 
 # SEO
 twitter:

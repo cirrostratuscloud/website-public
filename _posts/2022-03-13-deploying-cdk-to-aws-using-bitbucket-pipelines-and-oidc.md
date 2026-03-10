@@ -4,6 +4,7 @@ title: "Deploying (CDK) to AWS using Bitbucket Pipelines and OIDC"
 date: 2022-03-13
 categories: [aws-cdk, bitbucket, infrastructure, aws]
 excerpt: "The other day I was browsing Reddit and a user asked for help regarding deploying CDK with Bitbucket Pipelines, using OIDC. I assumed that this was straight forward and helped the user by pointing him to some articles. A few days later, the same use ..."
+slug: deploying-cdk-to-aws-using-bitbucket-pipelines-and-oidc
 ---
 
 

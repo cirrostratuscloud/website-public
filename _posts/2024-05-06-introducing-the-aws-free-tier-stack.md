@@ -6,6 +6,7 @@ categories: [aws, aws-free-tier, cloudformation]
 excerpt: "I love working with AWS. However, many people that take the dive into the box of Lego that is AWS, have a bad first experience; an unexpected bill that's (much) higher than you expected is a good reason to stop the adventure prematurely.
 One issue is..."
 image: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/4lS1eHQhAw8/upload/58b8519013963bb0607ded000f7a1880.jpeg
+slug: introducing-the-aws-free-tier-stack
 ---
 
 ![Introducing: the AWS Free Tier Stack](https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/4lS1eHQhAw8/upload/58b8519013963bb0607ded000f7a1880.jpeg)

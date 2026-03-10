@@ -7,6 +7,7 @@ excerpt: ""OutOfMemoryError: Container killed due to memory usage". This is the 
 The issue; hard memory limits
 Many appli..."
 image: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/tjiPN3e45WE/upload/1a900e5dd120947b11f011e2b9c7ea1a.jpeg
+slug: out-of-memory-issues-on-ecs-fargate-containers
 ---
 
 ![Out Of Memory issues on ECS Fargate containers](https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/tjiPN3e45WE/upload/1a900e5dd120947b11f011e2b9c7ea1a.jpeg)

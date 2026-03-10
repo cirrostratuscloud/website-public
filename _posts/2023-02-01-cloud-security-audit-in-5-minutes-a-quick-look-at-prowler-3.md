@@ -6,6 +6,7 @@ categories: [aws, security, prowler]
 excerpt: "Security is job zero. At least, that's what we say. In reality, business value comes first most of the time and security only becomes a job once either an audit must be performed, or perhaps when it's already too late.
 So, let's make security quick a..."
 image: https://cdn.hashnode.com/res/hashnode/image/upload/v1714989825216/db71a68f-3b68-4f8f-b3ca-4d23b53eb55c.png
+slug: cloud-security-audit-in-5-minutes-a-quick-look-at-prowler-3
 ---
 
 ![Cloud security audit in 5 minutes, a quick look at Prowler 3](https://cdn.hashnode.com/res/hashnode/image/upload/v1714989825216/db71a68f-3b68-4f8f-b3ca-4d23b53eb55c.png)

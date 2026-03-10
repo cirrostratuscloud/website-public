@@ -7,6 +7,7 @@ excerpt: "After being in preview for what felt like an eternity, AWS has finally
 released RDS Aurora Serverless v2 on April 21, 2022. 
 RDS Aurora Serverless v2 is available for both Mysql 8 and Postgres 13 and will be a game changer for many organizations that..."
 image: https://cdn.hashnode.com/res/hashnode/image/upload/v1650713587330/3IIxEZ3og.png
+slug: rds-aurora-serverless-v2-is-finally-here-lets-migrate
 ---
 
 ![RDS Aurora Serverless v2 is finally here, let's migrate!](https://cdn.hashnode.com/res/hashnode/image/upload/v1650713587330/3IIxEZ3og.png)

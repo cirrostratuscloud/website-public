@@ -6,6 +6,7 @@ categories: [aws, cost-optimisation, finops]
 excerpt: "Are you bleeding money on your AWS bill? You’re not alone. Between a complex billing system and a sea of options and opinions about cloud infrastructure, no AWS account is 100% optimized and cost effective.
 As with many complex problems, I like to br..."
 image: https://cdn.hashnode.com/res/hashnode/image/upload/v1732106123993/8251eb27-889b-44fe-8fae-328ae09114ee.png
+slug: aws-cost-optimization-for-everybody
 ---
 
 ![AWS Cost Optimization for everybody](https://cdn.hashnode.com/res/hashnode/image/upload/v1732106123993/8251eb27-889b-44fe-8fae-328ae09114ee.png)

@@ -40,8 +40,18 @@
 
             <nav>
                 {% for item in site.navigation %}
-                <a href="{{ item.url | relative_url }}" {% if page.url==item.url %}class="current" {% endif %}>{{
-                    item.title }}</a>
+                {% if item.dropdown %}
+                <div class="nav-dropdown">
+                    <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="current"{% endif %}>{{ item.title }} ▾</a>
+                    <div class="dropdown-menu">
+                        {% for subitem in item.dropdown %}
+                        <a href="{{ subitem.url | relative_url }}" {% if page.url == subitem.url %}class="current"{% endif %}>{{ subitem.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% else %}
+                <a href="{{ item.url | relative_url }}" {% if page.url == item.url %}class="current"{% endif %}>{{ item.title }}</a>
+                {% endif %}
                 {% endfor %}
             </nav>
         </div>
@@ -63,9 +73,14 @@
     <style>
         nav {
             margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0;
         }
 
-        nav a {
+        nav > a,
+        nav .nav-dropdown > a {
             color: #00ff00;
             text-decoration: none;
             margin-right: 1rem;
@@ -73,9 +88,46 @@
             border: 1px solid transparent;
         }
 
-        nav a:hover,
-        nav a.current {
+        nav > a:hover,
+        nav > a.current,
+        nav .nav-dropdown > a:hover,
+        nav .nav-dropdown > a.current {
             border-color: #00ff00;
+        }
+
+        .nav-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #1a1a1a;
+            border: 1px solid #00ff00;
+            min-width: 220px;
+            z-index: 100;
+            padding: 0.25rem 0;
+        }
+
+        .nav-dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            color: #00ff00;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .dropdown-menu a:hover,
+        .dropdown-menu a.current {
+            background: rgba(0, 255, 0, 0.1);
         }
 
         .social-links {

@@ -13,6 +13,11 @@ navigation:
     url: /
   - title: Services
     url: /services
+    dropdown:
+      - title: AWS for Startups
+        url: /services/aws-for-startups
+      - title: AWS Sovereign Cloud
+        url: /services/aws-sovereign-cloud
   - title: Blog
     url: /blog
   - title: About

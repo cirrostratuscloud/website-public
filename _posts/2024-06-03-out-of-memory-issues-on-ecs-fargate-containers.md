@@ -23,25 +23,25 @@ Often you'll see something like the `entrypoint` run a command similar to `awk '
 
 I created a sample service, running Nginx on a task with 0.25 vCPU and 512MB/0.5GB Memory:
 
-![](/assets/img/posts/f159bc15a319.png align="center")
+![](/assets/img/posts/f159bc15a319.png)
 
 Once the service was up and running, I connected to the container using ecs-exec, and ran the command to get the total amount of available memory:
 
-![](/assets/img/posts/4a0db90e38eb.png align="center")
+![](/assets/img/posts/4a0db90e38eb.png)
 
 As you can see, this method returns almost *twice* the amount of memory we attached to the container. As we update the service to give the container more memory to work with, the amount of memory reported varies:
 
 With 1GB:
 
-![](/assets/img/posts/60507b5b3651.png align="center")
+![](/assets/img/posts/60507b5b3651.png)
 
 With 2GB:
 
-![](/assets/img/posts/e56a21bda16a.png align="center")
+![](/assets/img/posts/e56a21bda16a.png)
 
 And with 8GB:
 
-![](/assets/img/posts/71173d7561cf.png align="center")
+![](/assets/img/posts/71173d7561cf.png)
 
 As you can see, each configuration will report around twice the amount of memory of what has been assigned to the container. Unfortunately this isn't just some free memory; once you use more than the assigned limit the container will be terminated immediately.
 
@@ -54,15 +54,15 @@ There are two solutions that I know of: either we use another CLI command to fin
 
 When we run that against our 8GB container, we see the correct value:
 
-![](/assets/img/posts/96893cf6d7b1.png align="center")
+![](/assets/img/posts/96893cf6d7b1.png)
 
 **As an alternative for the CLI command** I would suggest adding an environment variable to the task, and giving it the value of the memory available, like this:
 
-![](/assets/img/posts/e65318610639.png align="center")
+![](/assets/img/posts/e65318610639.png)
 
 Which would be active in the container like this:
 
-![](/assets/img/posts/1c4f3a2e155a.png align="center")
+![](/assets/img/posts/1c4f3a2e155a.png)
 
 This environment variable can then be used to update the application config.
 

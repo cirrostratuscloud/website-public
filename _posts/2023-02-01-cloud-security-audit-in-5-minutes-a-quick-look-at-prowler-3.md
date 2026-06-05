@@ -19,7 +19,7 @@ So, let's make security quick and easy! Prowler 3 is our weapon of choice since 
 
 To keep things quick and easy, we're going to run Prowler from AWS CloudShell. If you don't know what AWS CloudShell is, log on to the AWS console for the account that you want to scan and press the commandline-ish-button-thing as pictured below:
 
-![](/assets/img/posts/c11566dcb0de.png align="center")
+![](/assets/img/posts/c11566dcb0de.png)
 
 Once logged in, you'll have a command line that has the same permissions as the user you've just launched it with. If you already have Python3.9 installed (enter `python3.9 --version` to test) you can skip the next part. If you don't, we first need to install Python 3.9. Copy and paste the following into AWS Cloud Shell, and press enter:
 
@@ -43,7 +43,7 @@ prowler -v
 
 Currently, the latest version of Prowler is `3.1.2`, so that's what's installed for me:
 
-![](/assets/img/posts/89aa6df585df.png align="center")
+![](/assets/img/posts/89aa6df585df.png)
 
 # Running Prowler
 
@@ -65,13 +65,13 @@ Once Prowler is finished, it should show a summary, as well as the path that the
 
 The summary for my (mostly empty) AWS account looked like this:
 
-![](/assets/img/posts/67a9630a14bd.png align="center")
+![](/assets/img/posts/67a9630a14bd.png)
 
 I'm very interested in the critical results, so let's copy the path to the HTML file, and click `Actions` in the upper right corner menu, then `Download file` and paste the path, so your HTML report is downloaded.
 
 Once opened, your report should look a bit like this:
 
-![](/assets/img/posts/3f8b1baa9075.png align="center")
+![](/assets/img/posts/3f8b1baa9075.png)
 
 As you can see, Prowler reports on the context like the AWS account, region and role that was used to perform the scan, as well as an overview of the assessment.
 
@@ -79,7 +79,7 @@ As I was most interested in the critical findings, I used the `Filters` button t
 
 You see, when I created the Lambda function for this post, I did something I see people do a lot: I put a clear text password in my environment, as shown below.
 
-![](/assets/img/posts/3cbf6e9e5da8.png align="center")
+![](/assets/img/posts/3cbf6e9e5da8.png)
 
 For all checks that are performed, Prowler will also explain the `Risk` for failure, a `Recommendation` for mitigation and a link to the AWS documentation with instructions. Everything you need to understand why there's so much red in the results, how to turn them green and most importantly; why.
 

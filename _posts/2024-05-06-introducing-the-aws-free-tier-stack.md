@@ -40,9 +40,9 @@ The FTS, a simple CloudFormation stack, helps new users by doing the following:
 
 Here are some examples of the alerts that are sent by the stack:
 
-![Example where there is no MFA for the root user and access keys are active in the account](/assets/img/posts/8adbc740859f.png align="center")
+![Example where there is no MFA for the root user and access keys are active in the account](/assets/img/posts/8adbc740859f.png)
 
-![Example of alert because the root user was used](/assets/img/posts/dda8c042ba39.png align="center")
+![Example of alert because the root user was used](/assets/img/posts/dda8c042ba39.png)
 
 ## Installing the stack
 
@@ -50,21 +50,21 @@ To install the stack, view the instructions on the [Github repository](https://g
 
 Assuming you were already logged in to the AWS console, you'll see the **Quick create stack** wizard:
 
-![](/assets/img/posts/46ba5f5957dd.png align="center")
+![](/assets/img/posts/46ba5f5957dd.png)
 
 Now, update the parameters to your liking, making sure to enter a valid email address:
 
-![](/assets/img/posts/a0fb07def170.png align="center")
+![](/assets/img/posts/a0fb07def170.png)
 
 Then accept the capabilities and press **Create stack:**
 
 *Note: if we're talking about good practice: don't take my word for it if I tell you to do this. Please review the stack contents. Especially "IAM resources" should be thoroughly reviewed before being applied*.
 
-![](/assets/img/posts/d89a306b9ea6.png align="center")
+![](/assets/img/posts/d89a306b9ea6.png)
 
 Once the stack is created, you will receive an email from AWS. Press **Confirm subscription**
 
-![](/assets/img/posts/d4eb53bfc345.png align="center")
+![](/assets/img/posts/d4eb53bfc345.png)
 
 And that's all! If any of the currently supported misconfigurations are spotted or your daily budget is exceeded, you will get an alert in your email.
 

@@ -1,14 +1,15 @@
 ---
 layout: default
-title: "Deploying (CDK) to AWS using Bitbucket Pipelines and OIDC"
+title: "Deploying CDK to AWS Using Bitbucket Pipelines and OIDC — No Access Keys"
 date: 2022-03-13
-categories: [aws-cdk, bitbucket, infrastructure, aws]
-excerpt: "The other day I was browsing Reddit and a user asked for help regarding deploying CDK with Bitbucket Pipelines, using OIDC. I assumed that this was straight forward and helped the user by pointing him to some articles. A few days later, the same use ..."
+categories: [aws-cdk, bitbucket, infrastructure, aws, oidc, ci-cd]
+description: "How to deploy AWS CDK using Bitbucket Pipelines with OIDC authentication instead of IAM access keys. Step-by-step guide with working pipeline configuration."
+excerpt: "A step-by-step guide to deploying CDK apps via Bitbucket Pipelines using OIDC — eliminating the need for long-lived IAM access keys."
 slug: deploying-cdk-to-aws-using-bitbucket-pipelines-and-oidc
 ---
 
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1647162199041/AyiwSdj0C.png)
+![image.png](/assets/img/posts/9d742185fe1d.png)
 
 The other day I was browsing Reddit and a user asked for help regarding deploying CDK with Bitbucket Pipelines, using OIDC. I assumed that this was straight forward and helped the user by pointing him to some articles. A few days later, the same use case appeared on one of our backlogs, so I took the opportunity to test if it actually was straight forward. As things go; it was, after a few hours of debugging. 
 
@@ -52,17 +53,17 @@ Next, log in to your AWS account and browse to the [identity providers screen in
 
 Once there, click `Add Provider`
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1647097268833/fPiATdAJC.png)
+![image.png](/assets/img/posts/7148e3e55579.png)
 
 Then, select OpenID Connect and enter the Provider URL and Audience from the previous step. Click `Get thumbprint` and then `Add Provider`.
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1647097363473/jQAp00J6P.png)
+![image.png](/assets/img/posts/0ef115ed6770.png)
 
 If successful, you'll see that you now have an additional identity provider registered. Next, browse to [Roles](https://console.aws.amazon.com/iamv2/home?#/roles) and select `Create Role`. 
 
 Then select `Web Identity` and select the Identity provider and audience from the drop down, and click next.
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1647097541132/BUnzO1M5R.png)
+![image.png](/assets/img/posts/e582feb8b433.png)
 
 In the next screen, select one ore more Permissions policies. It's good practice to pick and choose what your pipeline will need, in stead of going for `AdministratorAccess` right off the bat.
 
@@ -147,7 +148,7 @@ We leave out the `artifacts` part since this is the last step and we don't any f
 
 And that's it! Commit `bitbucket-pipelines.yml` to the branch that you've defined and watch your pipeline deploy your app! (or fail miserably)
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1647160706140/uKfmzNQkH.png)
+![image.png](/assets/img/posts/8fc445235a96.png)
 
 # Closing thoughts
 

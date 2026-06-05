@@ -1,6 +1,7 @@
 ---
 layout: default
-title: AWS for Startups
+title: "AWS for Startups — Cloud Infrastructure That Scales With Your Product"
+description: "Get your AWS foundation right from day one. Cost-conscious architecture, CI/CD pipelines, Infrastructure as Code, and audit-ready security for growing startups."
 ---
 
 # AWS for Startups

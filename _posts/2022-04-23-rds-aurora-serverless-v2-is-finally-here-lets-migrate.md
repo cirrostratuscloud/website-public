@@ -1,16 +1,15 @@
 ---
 layout: default
-title: "RDS Aurora Serverless v2 is finally here, let's migrate!"
+title: "RDS Aurora Serverless v2 Migration Guide — Step by Step"
 date: 2022-04-23
-categories: [aws, databases, mysql, postgresql, serverless]
-excerpt: "After being in preview for what felt like an eternity, AWS has finally
-released RDS Aurora Serverless v2 on April 21, 2022. 
-RDS Aurora Serverless v2 is available for both Mysql 8 and Postgres 13 and will be a game changer for many organizations that..."
-image: https://cdn.hashnode.com/res/hashnode/image/upload/v1650713587330/3IIxEZ3og.png
+categories: [aws, databases, mysql, postgresql, serverless, rds]
+description: "Step-by-step guide to migrating an existing RDS Aurora MySQL or PostgreSQL cluster to Aurora Serverless v2 with minimal downtime using failover."
+excerpt: "AWS has finally released RDS Aurora Serverless v2. It's available for both MySQL 8 and Postgres 13 and will be a game changer for organizations with spiky database loads. Here's how to migrate."
+image: /assets/img/posts/585ec225524b.png
 slug: rds-aurora-serverless-v2-is-finally-here-lets-migrate
 ---
 
-![RDS Aurora Serverless v2 is finally here, let's migrate!](https://cdn.hashnode.com/res/hashnode/image/upload/v1650713587330/3IIxEZ3og.png)
+![RDS Aurora Serverless v2 is finally here, let's migrate!](/assets/img/posts/585ec225524b.png)
 
 After being in preview for what felt like an eternity, AWS has finally
 [released RDS Aurora Serverless v2](https://aws.amazon.com/about-aws/whats-new/2022/04/amazon-aurora-serverless-v2/) on April 21, 2022. 
@@ -27,56 +26,56 @@ RDS Aurora Serverless v2 is only available on the latest versions of both MySQL 
 
 As a test, I've provisioned a normal RDS Aurora MySQL 8 cluster with a provisioned instance:
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650710716836/JiUjTqfOS.png)
+![image.png](/assets/img/posts/0f2e2c2ae600.png)
 
 *Note that there's no in-place upgrade from MySQL 5.7 to 8, so if you're still on 5.7, you'll need to launch a new cluster from a snapshot.*
 
 First, let's upgrade to the latest version, by modifying the version of our cluster:
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650710430377/O-o_mwrP_.png)
+![image.png](/assets/img/posts/78d6531fc25e.png)
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650710452119/xBePwHHx7.png)
+![image.png](/assets/img/posts/dc6428e2fbd8.png)
 
 **Oops!** First hurdle. It appears Performance Insights can not be enabled during upgrade. The error message is wrong; Performance Insights is actually supported. If you've got Performance Insights enabled for any of your instances, disable it first to continue.
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650710888851/Ich4zS4Ju.png)
+![image.png](/assets/img/posts/e1778c1fbd06.png)
 
 After fixing the above, the cluster started upgrading. This takes about 10 minutes for an empty cluster, so your mileage will vary.
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650711083835/e8kjuZVQk.png)
+![image.png](/assets/img/posts/5f98ba8a60d5.png)
 
 Once your cluster is available again, we need to add a new **reader ** to the cluster:
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650711517830/yD8VBy2C9.png)
+![image.png](/assets/img/posts/7dfa32a9b654.png)
 
 On the Add Reader screen, select "Serverless v2" as your DB instance class, and specify a capacity range:
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650711586936/bKwSyT8Y1.png)
+![image.png](/assets/img/posts/2a03f06fc29e.png)
 
 Now we have a serverless reader added to our cluster. If your application is read-heavy and supports splitting reads and writes, this setup can be awesome as well. Use a small provisioned writer, and have Serverless v2 automatically manage reader capacity.
 
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650711993831/H46qWuPvK.png)
+![image.png](/assets/img/posts/9fa41c9bd264.png)
 
 For this article however, we want to end up with a completely serverless cluster. So let's continue by migrating the writer role to the serverless "Instance". To do that, select the serverless instance, go to actions, and press "Failover"
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650712080107/2GPly15Rb.png)
+![image.png](/assets/img/posts/e64bee0f0780.png)
 
 Then, press Failover again.
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650712062185/9mGakTAJT.png)
+![image.png](/assets/img/posts/0e0a0bba8db6.png)
 
 Note that after the failover was successful, our serverless instance now has the Writer role:
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650712154699/Xqo66m3Uh.png)
+![image.png](/assets/img/posts/7aecdd90751c.png)
 
 To complete the migration, just delete the old provisioned instance that now has the reader role: 
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650712206112/nWaSi2zvt.png)
+![image.png](/assets/img/posts/11ebc8ad0888.png)
 
 And that's it, we're completely serverless! 
 
-![image.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1650712746366/rvnXfziE-.png)
+![image.png](/assets/img/posts/1808e621fb15.png)
 
 After the migration, Performance Insights can be enabled for the serverless instance again. Also, it's wise to test your application thoroughly, both because of the new MySQL/PostgreSQL version, and to verify if the scaling of the serverless instance does not affect your application in any way.  The upgrade/migrate process **will** cause downtime, so when doing this in production, schedule the migration in a maintenance window.
 

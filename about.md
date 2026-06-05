@@ -1,6 +1,7 @@
 ---
 layout: default
-title: About
+title: "About — Yannick Van Rooyen, Freelance AWS Consultant"
+description: "Senior DevOps Engineer and AWS Specialist with deep expertise in Terraform, CDK, and cloud architecture. Helping small teams build scalable, secure AWS infrastructure."
 ---
 
 # About Me

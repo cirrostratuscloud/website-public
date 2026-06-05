@@ -6,6 +6,59 @@
 
 <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
 <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+
+<!-- Structured Data - ProfessionalService -->
+{% if page.url == "/" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Cirrostratus",
+  "description": "Freelance AWS consultant helping small product teams fix their cloud infrastructure — architecture, cost optimization, DevOps, and Infrastructure as Code.",
+  "url": "https://www.cirrostratus.cloud",
+  "founder": {
+    "@type": "Person",
+    "name": "Yannick Van Rooyen",
+    "jobTitle": "Senior DevOps Engineer & AWS Specialist",
+    "url": "https://www.linkedin.com/in/yannickvanrooyen/"
+  },
+  "serviceType": ["AWS Consulting", "DevOps Consulting", "Cloud Architecture", "Infrastructure as Code", "Cost Optimization"],
+  "areaServed": "Worldwide",
+  "email": "contact@cirrostratus.cloud",
+  "sameAs": [
+    "https://www.linkedin.com/in/yannickvanrooyen/",
+    "https://github.com/yannickvr"
+  ]
+}
+</script>
+{% endif %}
+
+{% if page.layout == "default" and page.date %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ page.title | escape }}",
+  "description": "{{ page.description | default: page.excerpt | strip_html | truncate: 160 | escape }}",
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "author": {
+    "@type": "Person",
+    "name": "Yannick Van Rooyen",
+    "url": "https://www.linkedin.com/in/yannickvanrooyen/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Cirrostratus",
+    "url": "https://www.cirrostratus.cloud"
+  },
+  "mainEntityOfPage": "{{ page.url | absolute_url }}"
+  {% if page.image %},
+  "image": "{{ page.image }}"
+  {% endif %}
+}
+</script>
+{% endif %}
 
 <!-- Custom CSS for enhanced hacker theme -->
 <style>

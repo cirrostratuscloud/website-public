@@ -1,6 +1,7 @@
 ---
 layout: default
-title: AWS Sovereign Cloud
+title: "AWS Sovereign Cloud Consulting — European Data Sovereignty & Compliance"
+description: "Expert guidance on AWS European Sovereign Cloud: architecture design, encryption, access controls, and regulatory compliance for GDPR, DORA, and NIS2."
 ---
 
 # AWS Sovereign Cloud

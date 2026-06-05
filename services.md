@@ -1,51 +1,54 @@
 ---
 layout: default
-title: Services
+title: "AWS Consulting Services — Architecture, DevOps, Cost Optimization & IaC"
+description: "AWS consulting services for small teams: cloud architecture, Terraform & CDK, CI/CD pipelines, cost optimization, and security. Flexible engagement models."
 ---
 
-# Services
+# AWS Consulting Services
 
-## AWS Consulting & Architecture
+I help small teams that have outgrown their original AWS setup. Whether it's architecture that doesn't scale, bills that don't make sense, or deploys that feel like gambling — I fix it.
 
-- **Cloud Migration**: Seamless transition from on-premises to AWS
-- **Architecture Review**: Optimize existing AWS infrastructure for cost and performance
-- **Well-Architected Reviews**: Comprehensive assessment using AWS best practices
-- **Multi-Account Strategy**: Secure, scalable AWS organization setup
+## AWS Architecture & Cost Optimization
 
-## DevOps & Automation
+- **Architecture Review** — Find the bottlenecks, over-provisioning, and anti-patterns before they bite you
+- **Cost Optimization** — Practical savings without sacrificing performance or reliability
+- **Well-Architected Reviews** — Structured assessment against AWS best practices
+- **Multi-Account Strategy** — Proper AWS Organization setup for teams that have outgrown a single account
+- **Cloud Migration** — Move from on-premises or other clouds without the drama
 
-- **CI/CD Pipelines**: Automated deployment workflows with GitHub Actions, Jenkins, or AWS CodePipeline
-- **Infrastructure as Code**: Terraform, OpenTofu, Terragrunt, CloudFormation, and AWS CDK for reproducible infrastructure
-- **Monitoring & Observability**: CloudWatch, Application Signals, and X-Ray for comprehensive observability
-- **Security Automation**: Automated compliance and security scanning
+## DevOps & CI/CD
 
-## Technical Leadership
-
-- **Team Mentoring**: Upskill your engineering teams on cloud and DevOps practices
-- **Technical Strategy**: Long-term roadmaps for infrastructure evolution
-- **Process Optimization**: Streamline development and deployment workflows
-- **Architecture Decisions**: Guidance on technology choices and system design
+- **CI/CD Pipelines** — GitHub Actions, Bitbucket Pipelines, or AWS CodePipeline — automated, tested, boring deploys
+- **Infrastructure as Code** — Terraform, OpenTofu, Terragrunt, CloudFormation, and AWS CDK done properly
+- **Monitoring & Observability** — CloudWatch, Application Signals, and X-Ray so you know what's happening
+- **Security Automation** — Automated compliance scanning, least-privilege IAM, encryption by default
 
 ## Infrastructure as Code Expertise
 
-- **Terraform & OpenTofu**: Module development, state management, and best practices
-- **Terragrunt**: Multi-environment orchestration and DRY infrastructure patterns
-- **AWS CDK**: Modern infrastructure as code with TypeScript, Python, and other languages
-- **CloudFormation**: Template design and optimization
-- **Org-Formation**: AWS Organization setup and multi-account governance
+- **Terraform & OpenTofu** — Module development, state management, best practices
+- **Terragrunt** — Multi-environment orchestration and DRY patterns
+- **AWS CDK** — TypeScript or Python, for teams that prefer real code over YAML
+- **CloudFormation** — When you need native AWS tooling
+- **Org-Formation** — AWS Organization-as-Code for multi-account governance
+
+## Technical Leadership & Mentoring
+
+- **Team Upskilling** — Get your engineers comfortable with cloud and DevOps
+- **Architecture Decisions** — Unbiased guidance on technology choices
+- **Process Optimization** — Faster, safer, less stressful development workflows
 
 ---
 
 ## Engagement Models
 
-**Project-Based**: Fixed scope deliverables with clear timelines
+**Project-Based** — Fixed scope deliverables. Architecture reviews, migrations, cost audits.
 
-**Retainer**: Ongoing support and consultation
+**Monthly Retainer** — Your on-call AWS expert for ongoing questions and improvements.
 
-**Hourly Consulting**: Flexible engagement for specific needs
+**Hourly Consulting** — Quick wins. A few hours to solve a specific problem.
 
-**Team Augmentation**: Embedded expertise for your projects
+**Team Augmentation** — Embedded in your team for larger projects.
 
 ---
 
-Ready to discuss your project? [Contact me]({{ '/contact' | relative_url }}) for a consultation.
+Not sure what you need? [Book a free 30-min call]({{ '/contact' | relative_url }}) and I'll tell you what I'd fix first.

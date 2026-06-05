@@ -1,11 +1,16 @@
 title: Cirrostratus
-description: AWS & DevOps Consulting | Cloud Infrastructure & Technical Leadership
+description: "Freelance AWS consultant helping small product teams fix their cloud infrastructure — architecture, cost optimization, DevOps, and IaC done right."
+tagline: "AWS Consulting for Small Teams"
 remote_theme: pages-themes/hacker@v0.2.0
 url: "https://www.cirrostratus.cloud"
 
 author:
-  name: Cirrostratus
+  name: Yannick Van Rooyen
   email: contact@cirrostratus.cloud
+
+# Open Graph defaults
+logo: /assets/img/yannick_small.jpeg
+locale: en_US
 
 # Navigation
 navigation:
@@ -43,6 +48,8 @@ linkedin:
   username: yannickvanrooyen
 github:
   username: yannickvr
+twitter:
+  card: summary_large_image
 
 # Collections
 collections:

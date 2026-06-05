@@ -2,11 +2,7 @@
 <html lang="en-US">
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">
-    {% seo %}
+    {% include head.html %}
 </head>
 
 <body>
@@ -14,10 +10,10 @@
     <header>
         <div class="container">
             <a id="a-title" href="{{ '/' | relative_url }}">
-                <h2>{{ site.title | default: site.github.repository_name }}</h2>
+                <span class="site-title">{{ site.title | default: site.github.repository_name }}</span>
             </a>
             <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-                <p class="tagline">{{ site.description | default: site.github.project_tagline }}</p>
+                <p class="tagline">{{ site.tagline | default: site.description }}</p>
                 <div class="social-links">
                     <a href="https://linkedin.com/in/yannickvanrooyen" target="_blank" rel="noopener noreferrer"
                         title="LinkedIn" class="social-icon">
@@ -66,7 +62,8 @@
     <footer>
         <div class="container">
             <p>&copy; {{ 'now' | date: "%Y" }} Cirrostratus. All rights reserved.</p>
-            <p>AWS & DevOps Consulting | <a href="mailto:contact@cirrostratus.cloud">contact@cirrostratus.cloud</a></p>
+            <p>Freelance AWS Consultant — Architecture, DevOps & Cost Optimization for Small Teams</p>
+            <p><a href="mailto:contact@cirrostratus.cloud">contact@cirrostratus.cloud</a> | <a href="/services">Services</a> | <a href="/blog">Blog</a> | <a href="/contact">Contact</a></p>
         </div>
     </footer>
 
@@ -169,6 +166,16 @@
 
         footer a {
             color: #00ff00;
+        }
+
+        .site-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        #a-title {
+            text-decoration: none;
         }
     </style>
 </body>

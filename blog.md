@@ -1,11 +1,12 @@
 ---
 layout: default
-title: Blog
+title: "AWS & DevOps Blog — Practical Guides for Small Engineering Teams"
+description: "Practical AWS and DevOps articles: cost optimization, ECS troubleshooting, Terraform patterns, security audits, and infrastructure automation for small teams."
 ---
 
 # Blog
 
-Insights on AWS, DevOps, Infrastructure as Code, and technical leadership.
+Practical AWS and DevOps insights for teams shipping software on AWS. No theory — just things that actually work.
 
 ---
 

@@ -1,15 +1,15 @@
 ---
 layout: default
-title: "Introducing: the AWS Free Tier Stack"
+title: "Introducing the AWS Free Tier Stack — Budget Alerts and Security Checks for New AWS Users"
 date: 2024-05-06
-categories: [aws, aws-free-tier, cloudformation]
-excerpt: "I love working with AWS. However, many people that take the dive into the box of Lego that is AWS, have a bad first experience; an unexpected bill that's (much) higher than you expected is a good reason to stop the adventure prematurely.
-One issue is..."
-image: https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/4lS1eHQhAw8/upload/58b8519013963bb0607ded000f7a1880.jpeg
+categories: [aws, aws-free-tier, cloudformation, security]
+description: "A free CloudFormation stack that sets up budget alerts, root user security checks, and CloudTrail for new AWS accounts. Deploy in minutes to avoid surprise bills."
+excerpt: "Many people taking the dive into AWS have a bad first experience — an unexpected bill that's much higher than expected. The AWS Free Tier Stack helps new users with early warnings and security basics."
+image: /assets/img/posts/24a3513c041e.jpeg
 slug: introducing-the-aws-free-tier-stack
 ---
 
-![Introducing: the AWS Free Tier Stack](https://cdn.hashnode.com/res/hashnode/image/stock/unsplash/4lS1eHQhAw8/upload/58b8519013963bb0607ded000f7a1880.jpeg)
+![Introducing: the AWS Free Tier Stack](/assets/img/posts/24a3513c041e.jpeg)
 
 I love working with AWS. However, many people that take the dive into the box of Lego that is AWS, have a bad first experience; an unexpected bill that's (much) higher than you expected is a good reason to stop the adventure prematurely.
 
@@ -40,9 +40,9 @@ The FTS, a simple CloudFormation stack, helps new users by doing the following:
 
 Here are some examples of the alerts that are sent by the stack:
 
-![Example where there is no MFA for the root user and access keys are active in the account](https://cdn.hashnode.com/res/hashnode/image/upload/v1714987160084/5fdca0fe-2eee-41c5-9a44-baa109ef41c0.png align="center")
+![Example where there is no MFA for the root user and access keys are active in the account](/assets/img/posts/8adbc740859f.png align="center")
 
-![Example of alert because the root user was used](https://cdn.hashnode.com/res/hashnode/image/upload/v1714987515172/c8fa93df-617b-440a-aa14-a4c0f2845b39.png align="center")
+![Example of alert because the root user was used](/assets/img/posts/dda8c042ba39.png align="center")
 
 ## Installing the stack
 
@@ -50,21 +50,21 @@ To install the stack, view the instructions on the [Github repository](https://g
 
 Assuming you were already logged in to the AWS console, you'll see the **Quick create stack** wizard:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1714987802574/83363882-c4cc-4471-bbad-23a0195dec87.png align="center")
+![](/assets/img/posts/46ba5f5957dd.png align="center")
 
 Now, update the parameters to your liking, making sure to enter a valid email address:
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1714987856674/f4c1bd1e-3f11-43e4-977a-663f5b9d94e9.png align="center")
+![](/assets/img/posts/a0fb07def170.png align="center")
 
 Then accept the capabilities and press **Create stack:**
 
 *Note: if we're talking about good practice: don't take my word for it if I tell you to do this. Please review the stack contents. Especially "IAM resources" should be thoroughly reviewed before being applied*.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1714987911442/2647129e-78d7-44e6-af5a-5c76a0ffec7f.png align="center")
+![](/assets/img/posts/d89a306b9ea6.png align="center")
 
 Once the stack is created, you will receive an email from AWS. Press **Confirm subscription**
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1714987991513/1b9e303b-fc75-4f6c-a8a9-63305ffa249d.png align="center")
+![](/assets/img/posts/d4eb53bfc345.png align="center")
 
 And that's all! If any of the currently supported misconfigurations are spotted or your daily budget is exceeded, you will get an alert in your email.
 

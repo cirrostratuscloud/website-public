@@ -3,22 +3,20 @@ layout: default
 title: "Managing Kubernetes Resources on a Private EKS Cluster with Lambda"
 date: 2026-08-25
 categories: [aws, eks, kubernetes, terraform, lambda]
-description: "A Terraform module that uses a Lambda function to apply Kubernetes manifests and Helm charts to a private EKS cluster — no internet access, no CI/CD pipeline required."
-excerpt: "Private EKS clusters are great for security, but managing resources on them can be painful. This Terraform module deploys a Lambda that runs kubectl and helm inside your VPC, giving you full CRUD lifecycle managed entirely through Terraform."
+description: "A Terraform module that uses a Lambda function to apply Kubernetes manifests and Helm charts to a private EKS cluster without internet access."
+excerpt: "A private EKS cluster has no public API endpoint. That makes it secure and hard to manage. This module puts kubectl and helm inside a Lambda, runs it in the VPC, and gives Terraform full CRUD control over Kubernetes resources."
 slug: managing-kubernetes-resources-on-private-eks-with-lambda
 ---
 
-Private EKS clusters are great for security; no public API endpoint means a significantly reduced attack surface. But they come with a trade-off: getting things onto the cluster becomes harder. You either need a bastion host, a VPN, or some CI/CD pipeline running inside the VPC.
+A private EKS cluster has no public API endpoint. That is the point. It also means you cannot run kubectl against it from your laptop, a CI runner, or anywhere outside the VPC.
 
-What if you could manage Kubernetes resources the same way you manage the rest of your infrastructure — through Terraform — without any of that?
+The usual workarounds are a bastion host, a VPN, or a CI/CD pipeline running inside the VPC. All three need maintenance. All three exist only to bridge a network gap.
 
-I built a module that does exactly this. The full source is available on GitHub: <a href="https://github.com/cirrostratuscloud/private-eks-management-with-terraform-lambda-invoke" target="_blank">private-eks-management-with-terraform-lambda-invoke</a>.
+I built a module that skips all of that. It deploys a Lambda inside the VPC with kubectl and helm bundled in the deployment package. Terraform invokes the Lambda, the Lambda talks to the EKS private endpoint, and Terraform manages the full create/update/delete lifecycle.
 
-## The idea
+The full source is on GitHub: <a href="https://github.com/cirrostratuscloud/private-eks-management-with-terraform-lambda-invoke" target="_blank">private-eks-management-with-terraform-lambda-invoke</a>.
 
-The `kube_crud` module deploys a Lambda function inside your VPC that bundles `kubectl` and `helm` binaries. It authenticates to the EKS API using an IAM role with cluster-admin access (via EKS access entries), generates a short-lived bearer token through STS, and runs commands against the private endpoint.
-
-Because the Lambda runs inside the VPC and uses VPC endpoints for EKS and STS, it works in fully air-gapped environments with no internet access.
+## How it works
 
 ```
 ┌─────────────┐       ┌───────────────────┐       ┌─────────────────┐
@@ -33,11 +31,15 @@ Because the Lambda runs inside the VPC and uses VPC endpoints for EKS and STS, i
                       └───────────────────┘
 ```
 
-The module leverages `aws_lambda_invocation` with `lifecycle_scope = "CRUD"`, meaning Terraform handles the full lifecycle: creates and updates run `kubectl apply` or `helm upgrade --install`, and destroys run `kubectl delete` or `helm uninstall`. Everything is idempotent.
+The Lambda authenticates using a short-lived STS token. It calls `eks:DescribeCluster` to get the API endpoint and CA certificate, generates a pre-signed `GetCallerIdentity` URL as a bearer token (the same mechanism `aws eks get-token` uses), writes a kubeconfig to `/tmp`, and runs the command.
 
-## Setting it up
+For manifests, it runs `kubectl apply --server-side --force-conflicts`. For Helm charts, it runs `helm upgrade --install --wait`. On destroy, it runs `kubectl delete` or `helm uninstall`. Both operations are idempotent.
 
-First, deploy the Lambda alongside your EKS cluster:
+The module uses `aws_lambda_invocation` with `lifecycle_scope = "CRUD"`. That resource type maps Terraform's create, update, and delete actions to Lambda invocations. Terraform controls the lifecycle. The Lambda does the work.
+
+## Deploying the module
+
+Deploy the Lambda alongside your EKS cluster:
 
 ```terraform
 module "kube_crud" {
@@ -51,9 +53,9 @@ module "kube_crud" {
 }
 ```
 
-The module downloads `kubectl` and `helm` at plan time and bundles them into the Lambda deployment package. The IAM role is automatically granted cluster-admin through an EKS access entry — no need to edit the `aws-auth` ConfigMap.
+The module downloads kubectl and helm at plan time and bundles them into the deployment package. An EKS access entry grants the Lambda role cluster-admin. No aws-auth ConfigMap edits required.
 
-You'll also need VPC endpoints for EKS and STS if your subnets don't have internet access:
+If the subnets lack internet access, add VPC endpoints for EKS and STS:
 
 ```terraform
 resource "aws_vpc_endpoint" "eks" {
@@ -75,9 +77,11 @@ resource "aws_vpc_endpoint" "sts" {
 }
 ```
 
+With those two endpoints, the Lambda can authenticate and reach the cluster API without any internet connectivity.
+
 ## Applying manifests
 
-The `invoke` submodule wraps each invocation. For raw manifests:
+The `invoke` submodule wraps each Lambda invocation:
 
 ```terraform
 module "demo_namespace" {
@@ -99,13 +103,13 @@ module "demo_namespace" {
 }
 ```
 
-Each invocation is its own module call. Use `depends_on` for ordering when resources need to exist before others are applied.
+Each invocation is a separate module call. Use `depends_on` to set ordering when one resource must exist before the next is applied.
 
 ## Deploying Helm charts
 
-The module supports three modes for Helm:
+The module supports three sources for Helm charts.
 
-**Local charts** — files are read at plan time and passed inline to the Lambda. No chart repository needed, no internet required:
+**Local charts.** Set `chart_dir` to a directory in your repo. The invoke module reads all files at plan time and passes them inline to the Lambda. No chart repository needed, no internet required:
 
 ```terraform
 module "my_release" {
@@ -125,7 +129,7 @@ module "my_release" {
 }
 ```
 
-**Remote HTTP repositories** — requires the Lambda to have internet access (NAT or endpoint):
+**Remote HTTP repositories.** The Lambda needs internet access (NAT gateway or HTTP endpoint) to pull the chart:
 
 ```terraform
 module "metrics_server" {
@@ -142,48 +146,30 @@ module "metrics_server" {
 }
 ```
 
-**OCI registries** — pass an `oci://` repository URL and the Lambda pulls directly from an OCI-compatible registry.
-
-## How the Lambda works
-
-Under the hood, the Python handler:
-
-1. Calls `eks:DescribeCluster` to get the API endpoint and CA certificate
-2. Generates a pre-signed STS `GetCallerIdentity` URL as a bearer token (the same mechanism `aws eks get-token` uses)
-3. Writes a kubeconfig to `/tmp`
-4. Runs `kubectl apply --server-side --force-conflicts` for manifests, or `helm upgrade --install --wait` for charts
-5. On delete (triggered by Terraform destroy), runs `kubectl delete` or `helm uninstall`
-
-The Lambda has a 15-minute timeout which is plenty for most operations, and the `--wait` flag on Helm means Terraform won't mark the resource as created until the release is actually healthy.
+**OCI registries.** Pass a repository URL starting with `oci://` and the Lambda pulls directly from the registry.
 
 ## Security model
 
-The module creates a dedicated IAM role with minimal permissions:
+The module creates a dedicated IAM role with three permission sets:
 
-- CloudWatch Logs (for its own log group)
-- VPC ENI management (required for Lambda in VPC)
-- `eks:DescribeCluster` on the target cluster
+- CloudWatch Logs: create and write to its own log group
+- VPC ENI management: required for any Lambda running in a VPC
+- `eks:DescribeCluster`: scoped to the target cluster ARN
 
-Cluster-level access is granted through an EKS access entry with the `AmazonEKSClusterAdminPolicy`. This is intentionally broad because the Lambda needs to apply arbitrary resources. If you need tighter scoping, you can replace this with a custom access policy.
+Cluster-level access uses an EKS access entry with `AmazonEKSClusterAdminPolicy`. That policy is broad because the Lambda needs to apply arbitrary resources. Replace it with a custom access policy if your use case allows tighter scoping.
 
-The Lambda security group only allows egress — the cluster security group is given an ingress rule for port 443 from the Lambda SG.
+The Lambda security group allows all egress and no ingress. The cluster security group receives an ingress rule for port 443 from the Lambda security group.
 
-## When to use this
+## When this pattern fits
 
-This pattern works well when:
+This module solves a specific problem: managing Kubernetes resources on a private EKS cluster through Terraform, without maintaining additional infrastructure for network access.
 
-- Your EKS cluster is fully private (no public endpoint)
-- You want to manage Kubernetes resources declaratively in Terraform
-- You don't want to maintain a bastion host or VPN just for kubectl access
-- You need to bootstrap cluster add-ons (namespaces, RBAC, controllers) as part of your infrastructure code
-- Your environment is air-gapped and can't reach external CI/CD systems
-
-It's not a replacement for a full GitOps setup like ArgoCD or Flux for application deployments, but it fills the gap between "cluster exists" and "GitOps controller is running" nicely.
+It works well for bootstrapping cluster add-ons (namespaces, RBAC, controllers) as part of infrastructure code. It works well in air-gapped environments. It does not replace a GitOps controller like ArgoCD or Flux for application deployments. It fills the gap between "cluster exists" and "GitOps controller is running."
 
 ## Wrapping up
 
-Managing private EKS clusters doesn't have to mean giving up on infrastructure-as-code for Kubernetes resources. By putting kubectl and helm inside a Lambda, the entire lifecycle lives in Terraform — including proper cleanup on destroy. No bastion, no VPN, no external pipeline.
+Put kubectl and helm inside a Lambda, run it in the VPC, point it at the private endpoint. Terraform manages the lifecycle. On destroy, the resources get cleaned up. No bastion, no VPN, no pipeline.
 
 ---
 
-*Need help setting up private EKS clusters or automating your Kubernetes infrastructure? [Get in touch](/contact) for a free consultation.*
+*Need help with private EKS clusters or Kubernetes infrastructure automation? [Get in touch](/contact) for a free consultation.*

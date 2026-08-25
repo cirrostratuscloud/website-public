@@ -12,7 +12,7 @@ Private EKS clusters are great for security; no public API endpoint means a sign
 
 What if you could manage Kubernetes resources the same way you manage the rest of your infrastructure — through Terraform — without any of that?
 
-I built a module that does exactly this. The full source is available on GitHub: [private-eks-management-with-terraform-lambda-invoke](https://github.com/cirrostratuscloud/private-eks-management-with-terraform-lambda-invoke).
+I built a module that does exactly this. The full source is available on GitHub: <a href="https://github.com/cirrostratuscloud/private-eks-management-with-terraform-lambda-invoke" target="_blank">private-eks-management-with-terraform-lambda-invoke</a>.
 
 ## The idea
 
@@ -39,7 +39,7 @@ The module leverages `aws_lambda_invocation` with `lifecycle_scope = "CRUD"`, me
 
 First, deploy the Lambda alongside your EKS cluster:
 
-```hcl
+```terraform
 module "kube_crud" {
   source = "./kube_crud"
 
@@ -55,7 +55,7 @@ The module downloads `kubectl` and `helm` at plan time and bundles them into the
 
 You'll also need VPC endpoints for EKS and STS if your subnets don't have internet access:
 
-```hcl
+```terraform
 resource "aws_vpc_endpoint" "eks" {
   vpc_id              = module.vpc.vpc_id
   service_name        = "com.amazonaws.${local.region}.eks"
@@ -79,7 +79,7 @@ resource "aws_vpc_endpoint" "sts" {
 
 The `invoke` submodule wraps each invocation. For raw manifests:
 
-```hcl
+```terraform
 module "demo_namespace" {
   source = "./kube_crud/modules/invoke"
 
@@ -107,7 +107,7 @@ The module supports three modes for Helm:
 
 **Local charts** — files are read at plan time and passed inline to the Lambda. No chart repository needed, no internet required:
 
-```hcl
+```terraform
 module "my_release" {
   source = "./kube_crud/modules/invoke"
 
@@ -127,7 +127,7 @@ module "my_release" {
 
 **Remote HTTP repositories** — requires the Lambda to have internet access (NAT or endpoint):
 
-```hcl
+```terraform
 module "metrics_server" {
   source = "./kube_crud/modules/invoke"
 

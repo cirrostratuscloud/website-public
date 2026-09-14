@@ -112,10 +112,6 @@
         ad_storage: granted ? 'granted' : 'denied',
         analytics_storage: granted ? 'granted' : 'denied'
       });
-      // On the first opt-in, load the gtag.js library (deferred until consent).
-      if (granted && typeof window.csLoadGtag === 'function') {
-        window.csLoadGtag();
-      }
       try { localStorage.setItem(STORAGE_KEY, state); } catch (e) {}
       banner.hidden = true;
     }

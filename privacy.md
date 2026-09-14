@@ -25,11 +25,16 @@ The data controller for this website is:
 ### Analytics (only with your consent)
 
 We use **Google Analytics 4** to understand how visitors use the site so we can
-improve it. Analytics is only active if you click **Accept** on our cookie
-banner. Until you consent, no analytics cookies are set and no analytics data is
-sent.
+improve it.
 
-When enabled, Google Analytics may collect:
+**Before you consent**, we do not set any cookies and do not store or collect
+any information that can identify you. In this state Google Analytics operates in
+a cookieless mode: it sends anonymous, aggregated signals that let Google
+estimate overall visitor numbers, but no identifiers, no cookies, and no personal
+data are used.
+
+**After you click Accept**, Google Analytics is enabled with cookies and may
+collect:
 
 - Pages you visit and how you navigate between them
 - Approximate location (derived from your IP address, which Google truncates)
@@ -64,8 +69,9 @@ to any server. It is strictly necessary to remember your consent preference.
 
 - **Manage your consent:** You can accept or withdraw analytics consent at any
   time using the button below.
-- **Withdraw consent:** Declining (or clearing your browser storage) stops any
-  further analytics collection.
+- **Withdraw consent:** Declining (or clearing your browser storage) stops all
+  cookies and identifiers. Analytics returns to the anonymous, cookieless mode
+  described above.
 - **Browser controls:** You can block or delete cookies through your browser
   settings.
 

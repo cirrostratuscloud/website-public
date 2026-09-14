@@ -63,9 +63,11 @@
         <div class="container">
             <p>&copy; {{ 'now' | date: "%Y" }} Cirrostratus. All rights reserved.</p>
             <p>Freelance AWS Consultant — Architecture, DevOps & Cost Optimization for Small Teams</p>
-            <p><a href="mailto:contact@cirrostratus.cloud">contact@cirrostratus.cloud</a> | <a href="/services">Services</a> | <a href="/blog">Blog</a> | <a href="/contact">Contact</a></p>
+            <p><a href="mailto:contact@cirrostratus.cloud">contact@cirrostratus.cloud</a> | <a href="/services">Services</a> | <a href="/blog">Blog</a> | <a href="/contact">Contact</a> | <a href="/privacy">Privacy</a></p>
         </div>
     </footer>
+
+    {% include consent-banner.html %}
 
     <style>
         nav {

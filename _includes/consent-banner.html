@@ -1,0 +1,138 @@
+<!-- Cookie consent banner (GDPR / Google Consent Mode v2) -->
+<div id="cs-consent-banner" class="cs-consent-banner" role="dialog" aria-live="polite"
+     aria-label="Cookie consent" hidden>
+  <div class="cs-consent-inner">
+    <p class="cs-consent-text">
+      We use Google Analytics to understand how visitors use this site. Analytics
+      cookies are only set if you accept. See our
+      <a href="/privacy">privacy policy</a> for details.
+    </p>
+    <div class="cs-consent-actions">
+      <button type="button" id="cs-consent-decline" class="cs-btn cs-btn-secondary">Decline</button>
+      <button type="button" id="cs-consent-accept" class="cs-btn cs-btn-primary">Accept</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cs-consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #1a1a1a;
+    border-top: 1px solid #00ff00;
+    padding: 1rem;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  .cs-consent-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cs-consent-text {
+    margin: 0;
+    flex: 1 1 320px;
+    font-size: 0.9rem;
+    color: #c0c0c0;
+  }
+
+  .cs-consent-text a {
+    color: #00ff00;
+  }
+
+  .cs-consent-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .cs-btn {
+    font-family: inherit;
+    font-size: 0.9rem;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid #00ff00;
+    background: transparent;
+    color: #00ff00;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .cs-btn:hover {
+    background: rgba(0, 255, 0, 0.1);
+  }
+
+  .cs-btn-primary {
+    background: #00ff00;
+    color: #0a0a0a;
+    font-weight: bold;
+  }
+
+  .cs-btn-primary:hover {
+    background: #33ff33;
+  }
+
+  .cs-btn-secondary {
+    color: #c0c0c0;
+    border-color: #555;
+  }
+
+  .cs-btn-secondary:hover {
+    border-color: #999;
+    background: rgba(255, 255, 255, 0.05);
+  }
+</style>
+
+<script>
+  (function () {
+    var STORAGE_KEY = 'cs-consent';
+    var banner = document.getElementById('cs-consent-banner');
+    if (!banner) return;
+
+    function gtagSafe() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      return gtag;
+    }
+
+    function setConsent(state) {
+      var gtag = gtagSafe();
+      var granted = state === 'granted';
+      gtag('consent', 'update', {
+        ad_user_data: granted ? 'granted' : 'denied',
+        ad_personalization: granted ? 'granted' : 'denied',
+        ad_storage: granted ? 'granted' : 'denied',
+        analytics_storage: granted ? 'granted' : 'denied'
+      });
+      // On the first opt-in, load the gtag.js library (deferred until consent).
+      if (granted && typeof window.csLoadGtag === 'function') {
+        window.csLoadGtag();
+      }
+      try { localStorage.setItem(STORAGE_KEY, state); } catch (e) {}
+      banner.hidden = true;
+    }
+
+    var stored;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+
+    // Only show the banner if the visitor hasn't made a choice yet.
+    if (stored !== 'granted' && stored !== 'denied') {
+      banner.hidden = false;
+    }
+
+    document.getElementById('cs-consent-accept').addEventListener('click', function () {
+      setConsent('granted');
+    });
+    document.getElementById('cs-consent-decline').addEventListener('click', function () {
+      setConsent('denied');
+    });
+  })();
+</script>

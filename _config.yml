@@ -4,6 +4,9 @@ tagline: "AWS Consulting for Small Teams"
 remote_theme: pages-themes/hacker@v0.2.0
 url: "https://www.cirrostratus.cloud"
 
+# Analytics
+google_analytics: G-5YTQ30T4C0
+
 author:
   name: Yannick Van Rooyen
   email: contact@cirrostratus.cloud

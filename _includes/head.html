@@ -2,15 +2,50 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5YTQ30T4C0"></script>
+{% if site.google_analytics %}
+<!-- Google Analytics with Consent Mode v2 (gtag.js loaded only after consent) -->
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  function gtag(){ dataLayer.push(arguments); }
 
-  gtag('config', 'G-5YTQ30T4C0');
+  // Consent Mode v2: default every signal to denied until the visitor opts in (GDPR/EU).
+  gtag('consent', 'default', {
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    wait_for_update: 500
+  });
+
+  gtag('js', new Date());
+  gtag('config', '{{ site.google_analytics }}');
+
+  // Load the gtag.js library. It respects the consent state above, so it will
+  // not read/write cookies or send analytics data until consent is granted.
+  window.csLoadGtag = function () {
+    if (window.csGtagLoaded) return;
+    window.csGtagLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}';
+    var first = document.getElementsByTagName('script')[0];
+    first.parentNode.insertBefore(s, first);
+  };
+
+  // If the visitor already granted consent on a previous visit, restore it now.
+  try {
+    if (localStorage.getItem('cs-consent') === 'granted') {
+      gtag('consent', 'update', {
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        ad_storage: 'granted',
+        analytics_storage: 'granted'
+      });
+      window.csLoadGtag();
+    }
+  } catch (e) {}
 </script>
+{% endif %}
 
 {% seo %}
 
